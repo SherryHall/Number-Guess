@@ -1,1 +1,6 @@
 c:\users\sherry\documents\visual studio 2015\Projects\Number-Guess\Number-Guess\bin\Debug\Number-Guess.exe.config
+c:\users\sherry\documents\visual studio 2015\Projects\Number-Guess\Number-Guess\bin\Debug\Number-Guess.exe
+c:\users\sherry\documents\visual studio 2015\Projects\Number-Guess\Number-Guess\bin\Debug\Number-Guess.pdb
+c:\users\sherry\documents\visual studio 2015\Projects\Number-Guess\Number-Guess\obj\Debug\Number-Guess.csprojResolveAssemblyReference.cache
+c:\users\sherry\documents\visual studio 2015\Projects\Number-Guess\Number-Guess\obj\Debug\Number-Guess.exe
+c:\users\sherry\documents\visual studio 2015\Projects\Number-Guess\Number-Guess\obj\Debug\Number-Guess.pdb
