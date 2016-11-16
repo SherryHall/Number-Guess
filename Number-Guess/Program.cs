@@ -16,17 +16,18 @@ namespace Number_Guess
 
 			while (wantToPlay)
 			{
-
-				int numToGuess = rnd.Next(1, 100); // creates a number between 1 and 100
-				Console.WriteLine(numToGuess);
+				// generate a random number between 1 and 100
+				int numToGuess = rnd.Next(1, 100); 
 				var guesses = new int[5];
 				var results = new string[5];
 				var guessCount = 0;
 				var maxGuesses = 5;
-				var goodGuess = false;
+				var lowGuess = 0;
+				var hiGuess = 101;
+				var youWon = false;
 
 				Console.WriteLine("Guess a number between 1 and 100.  You get 5 tries");
-				while ((!goodGuess) && (guessCount < maxGuesses))
+				while ((!youWon) && (guessCount < maxGuesses))
 				{
 					bool isAnInt = false;
 					var guessNum = 0;
@@ -39,14 +40,14 @@ namespace Number_Guess
 					if (guessNum == numToGuess)
 					{
 						Console.WriteLine("Congratulations! You Win!");
-						goodGuess = true;
+						youWon = true;
 					}
 					else
 					{
 						// If this number has already been tried display message
 						if (Array.Exists(guesses, element => element == guessNum))
 						{
-							Console.WriteLine("Are you senile?? You already tried that number. What a waste!");
+							Console.WriteLine("Are you senile?? You already tried that number!");
 
 						}
 						guesses[guessCount] = guessNum;
@@ -62,19 +63,37 @@ namespace Number_Guess
 						{
 							Console.WriteLine("Your guess is too low");
 							results[guessCount] = "too low";
+							// check if lower than prior low guess. Display message.
+							if (guessNum < lowGuess)
+							{
+								Console.WriteLine($"Your prior guess of {lowGuess} was too low, so going lower was a waste!");
+							}
+							else
+							{
+								lowGuess = guessNum;
+							}
 						}
 						else
 						// The entry is more than the number to guess, so it is too high. 
 						{
 							Console.WriteLine("Your guess is too high");
 							results[guessCount] = "too high";
+							// check if higher than prior high guess. Display message.
+							if (guessNum > hiGuess)
+							{
+								Console.WriteLine($"Your prior guess of {hiGuess} was too high, so going higher was a waste!");
+							}
+							else
+							{
+								hiGuess = guessNum;
+							}
 						}
 
 						guessCount++;
 					}
 				}
 				// You have used the max number of guesses and they were all wrong. Display failed guesses.
-				if (!goodGuess)
+				if (!youWon)
 				{
 					Console.WriteLine("\nYou have reached the guess limit. You Lose!!!");
 					Console.WriteLine($"The correct number was {numToGuess}");
@@ -86,7 +105,7 @@ namespace Number_Guess
 				}
 				Console.Write("\nDo you want to play again? (Y/N)  ");
 				var answer = Console.ReadLine();
-				if (answer == "N")
+				if (String.Compare(answer, "N", true) == 0)
 				{
 					wantToPlay = false;
 				}
