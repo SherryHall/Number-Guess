@@ -18,6 +18,7 @@ namespace Number_Guess
 			{
 
 				int numToGuess = rnd.Next(1, 100); // creates a number between 1 and 100
+				Console.WriteLine(numToGuess);
 				var guesses = new int[5];
 				var results = new string[5];
 				var guessCount = 0;
@@ -42,6 +43,12 @@ namespace Number_Guess
 					}
 					else
 					{
+						// If this number has already been tried display message
+						if (Array.Exists(guesses, element => element == guessNum))
+						{
+							Console.WriteLine("Are you senile?? You already tried that number. What a waste!");
+
+						}
 						guesses[guessCount] = guessNum;
 
 						// if entry is not between 1 and 100 it is invalid. 
@@ -51,13 +58,13 @@ namespace Number_Guess
 							results[guessCount] = "invalid";
 						}
 						else if (guessNum < numToGuess)
-						// if entry is less than the number to guess it is too low. 
+						// if entry is less than the number to guess, it is too low. 
 						{
 							Console.WriteLine("Your guess is too low");
 							results[guessCount] = "too low";
 						}
 						else
-						// The entry is more than the number to guess so it is too high. 
+						// The entry is more than the number to guess, so it is too high. 
 						{
 							Console.WriteLine("Your guess is too high");
 							results[guessCount] = "too high";
@@ -74,7 +81,7 @@ namespace Number_Guess
 					Console.WriteLine("You made the following guesses");
 					for (int i = 0; i < 5; i++)
 					{
-						Console.WriteLine($"Guess #{i + 1} was {guesses[i]}, which was {results[i]}");
+						Console.WriteLine($"Guess #{i + 1} was {guesses[i]} - ({results[i]})");
 					}
 				}
 				Console.Write("\nDo you want to play again? (Y/N)  ");
